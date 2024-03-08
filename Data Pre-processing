@@ -1,1 +1,310 @@
+Link to the Dataset :  https://drive.google.com/drive/folders/1Ql7X2vJ7gwBqyNNrmIfz0J234sjsS8At?usp=sharing
+
+
+# Path to your dataset folder
+path = 'https://drive.google.com/drive/folders/1Ql7X2vJ7gwBqyNNrmIfz0J234sjsS8At?usp=drive_link'
+
+
+import gdown
+
+# URL of the folder in Google Drive
+folder_url = 'https://drive.google.com/drive/folders/1Ql7X2vJ7gwBqyNNrmIfz0J234sjsS8At?usp=drive_link'
+
+# Manually list the files you want to download
+file_urls = [
+    'https://drive.google.com/file/d/1vIFXRbNIxrRLdv-mwt_9yIsnx7YH-llq/view?usp=sharing',
+    'https://drive.google.com/file/d/1QzeZz68MWU_sroD_Gn8W7Msaji8D769N/view?usp=sharing',
+    'https://drive.google.com/file/d/1JT0L_qTP9WvHMu9ildgRFEpzmMPL-_xk/view?usp=sharing',
+    'https://drive.google.com/file/d/1gvlTYkuB7luxyCWC7eLECHqE-ka_yvRm/view?usp=sharing',
+    'https://drive.google.com/file/d/123XhO2XlIq2oVcTHXdHYcV8saehrb9_c/view?usp=sharing',
+    'https://drive.google.com/file/d/1hECIBK8RLf6Pulx1dYK-omG1K3gQFDnV/view?usp=sharing'
+    # Add more file URLs as needed
+]
+
+# Download each file
+for file_url in file_urls:
+    # Extract the file ID from the URL
+    file_id = file_url.split('/')[-2]
+    # Construct the direct download URL
+    download_url = f'https://drive.google.com/uc?id={file_id}'
+    # Download the file
+    output_path = f'./{file_id}.csv'
+    gdown.download(download_url, output_path, quiet=False)
+
+# Print a message indicating that the download is complete
+print('Download complete.')
+
+
+
+Downloading...
+From: https://drive.google.com/uc?id=1vIFXRbNIxrRLdv-mwt_9yIsnx7YH-llq
+To: C:\Users\nithi\1vIFXRbNIxrRLdv-mwt_9yIsnx7YH-llq.csv
+100%|█████████████████████████████████████████████████████████████████████████████| 17.2k/17.2k [00:00<00:00, 1.16MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1QzeZz68MWU_sroD_Gn8W7Msaji8D769N
+To: C:\Users\nithi\1QzeZz68MWU_sroD_Gn8W7Msaji8D769N.csv
+100%|███████████████████████████████████████████████████████████████████████████████| 355k/355k [00:00<00:00, 1.81MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1JT0L_qTP9WvHMu9ildgRFEpzmMPL-_xk
+To: C:\Users\nithi\1JT0L_qTP9WvHMu9ildgRFEpzmMPL-_xk.csv
+100%|█████████████████████████████████████████████████████████████████████████████| 1.04M/1.04M [00:00<00:00, 2.72MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1gvlTYkuB7luxyCWC7eLECHqE-ka_yvRm
+To: C:\Users\nithi\1gvlTYkuB7luxyCWC7eLECHqE-ka_yvRm.csv
+100%|█████████████████████████████████████████████████████████████████████████████| 14.5M/14.5M [00:03<00:00, 3.78MB/s]
+Downloading...
+From: https://drive.google.com/uc?id=123XhO2XlIq2oVcTHXdHYcV8saehrb9_c
+To: C:\Users\nithi\123XhO2XlIq2oVcTHXdHYcV8saehrb9_c.csv
+100%|██████████████████████████████████████████████████████████████████████████████| 14.0k/14.0k [00:00<00:00, 797kB/s]
+Downloading...
+From: https://drive.google.com/uc?id=1hECIBK8RLf6Pulx1dYK-omG1K3gQFDnV
+To: C:\Users\nithi\1hECIBK8RLf6Pulx1dYK-omG1K3gQFDnV.csv
+100%|█████████████████████████████████████████████████████████████████████████████████████| 2.14k/2.14k [00:00<?, ?B/s]
+Download complete.
+
+
+
+
+import pandas as pd
+
+# List of downloaded file paths
+file_paths = [
+    './1vIFXRbNIxrRLdv-mwt_9yIsnx7YH-llq.csv',
+    './1QzeZz68MWU_sroD_Gn8W7Msaji8D769N.csv',
+    './1JT0L_qTP9WvHMu9ildgRFEpzmMPL-_xk.csv',
+    './1gvlTYkuB7luxyCWC7eLECHqE-ka_yvRm.csv',
+    './123XhO2XlIq2oVcTHXdHYcV8saehrb9_c.csv',
+    './1hECIBK8RLf6Pulx1dYK-omG1K3gQFDnV.csv'
+]
+
+# Load each CSV file into a Pandas DataFrame and display the head
+for i, file_path in enumerate(file_paths, start=1):
+    df = pd.read_csv(file_path)
+    print(f'File {i}:')
+    print(df.head())
+    print()
+
+
+
+File 1:
+  Car_Name  Year  Selling_Price  Present_Price  Kms_Driven Fuel_Type  \
+0     ritz  2014           3.35           5.59       27000    Petrol   
+1      sx4  2013           4.75           9.54       43000    Diesel   
+2     ciaz  2017           7.25           9.85        6900    Petrol   
+3  wagon r  2011           2.85           4.15        5200    Petrol   
+4    swift  2014           4.60           6.87       42450    Diesel   
+
+  Seller_Type Transmission  Owner  
+0      Dealer       Manual      0  
+1      Dealer       Manual      0  
+2      Dealer       Manual      0  
+3      Dealer       Manual      0  
+4      Dealer       Manual      0  
+
+File 2:
+                       name  year  selling_price  km_driven    fuel  \
+0             Maruti 800 AC  2007          60000      70000  Petrol   
+1  Maruti Wagon R LXI Minor  2007         135000      50000  Petrol   
+2      Hyundai Verna 1.6 SX  2012         600000     100000  Diesel   
+3    Datsun RediGO T Option  2017         250000      46000  Petrol   
+4     Honda Amaze VX i-DTEC  2014         450000     141000  Diesel   
+
+  seller_type transmission         owner  
+0  Individual       Manual   First Owner  
+1  Individual       Manual   First Owner  
+2  Individual       Manual   First Owner  
+3  Individual       Manual   First Owner  
+4  Individual       Manual  Second Owner  
+
+File 3:
+                           name  year  selling_price  km_driven    fuel  \
+0        Maruti Swift Dzire VDI  2014         450000     145500  Diesel   
+1  Skoda Rapid 1.5 TDI Ambition  2014         370000     120000  Diesel   
+2      Honda City 2017-2020 EXi  2006         158000     140000  Petrol   
+3     Hyundai i20 Sportz Diesel  2010         225000     127000  Diesel   
+4        Maruti Swift VXI BSIII  2007         130000     120000  Petrol   
+
+  seller_type transmission         owner     mileage   engine   max_power  \
+0  Individual       Manual   First Owner   23.4 kmpl  1248 CC      74 bhp   
+1  Individual       Manual  Second Owner  21.14 kmpl  1498 CC  103.52 bhp   
+2  Individual       Manual   Third Owner   17.7 kmpl  1497 CC      78 bhp   
+3  Individual       Manual   First Owner   23.0 kmpl  1396 CC      90 bhp   
+4  Individual       Manual   First Owner   16.1 kmpl  1298 CC    88.2 bhp   
+
+                     torque  seats  
+0            190Nm@ 2000rpm    5.0  
+1       250Nm@ 1500-2500rpm    5.0  
+2     12.7@ 2,700(kgm@ rpm)    5.0  
+3  22.4 kgm at 1750-2750rpm    5.0  
+4     11.5@ 4,500(kgm@ rpm)    5.0  
+
+File 4:
+   VIN (1-10)   County        City State  ZIP Code  Model Year   Make  \
+0  WA1AAAGE2M   Kitsap     POULSBO    WA     98370        2021   AUDI   
+1  WBY8P2C00L     King     SEATTLE    WA     98122        2020    BMW   
+2  5YJXCBE21K  Cowlitz  SILVERLAKE    WA     98645        2019  TESLA   
+3  1FTZR081XY     King     SEATTLE    WA     98117        2000   FORD   
+4  WBY1Z6C55H     King     SEATTLE    WA     98119        2017    BMW   
+
+     Model           Electric Vehicle Type  \
+0   E-TRON  Battery Electric Vehicle (BEV)   
+1       I3  Battery Electric Vehicle (BEV)   
+2  MODEL X  Battery Electric Vehicle (BEV)   
+3   RANGER  Battery Electric Vehicle (BEV)   
+4       I3  Battery Electric Vehicle (BEV)   
+
+  Clean Alternative Fuel Vehicle (CAFV) Eligibility  Electric Range  \
+0           Clean Alternative Fuel Vehicle Eligible             222   
+1           Clean Alternative Fuel Vehicle Eligible             153   
+2           Clean Alternative Fuel Vehicle Eligible             289   
+3           Clean Alternative Fuel Vehicle Eligible              58   
+4           Clean Alternative Fuel Vehicle Eligible              81   
+
+   Base MSRP  Legislative District  DOL Vehicle ID  \
+0          0                  23.0       148815901   
+1          0                  37.0       132197810   
+2          0                  20.0       154341673   
+3          0                  36.0       169378338   
+4          0                  36.0       192605101   
+
+                        Vehicle Location  
+0  POINT (-122.63339300000001 47.748427)  
+1           POINT (-122.303413 47.61065)  
+2          POINT (-122.772699 46.320526)  
+3          POINT (-122.379354 47.687571)  
+4  POINT (-122.36772100000002 47.639264)  
+
+File 5:
+         Brand                          Model     Accel  TopSpeed   Range  \
+0       Tesla   Model 3 Long Range Dual Motor   4.6 sec  233 km/h  450 km   
+1  Volkswagen                       ID.3 Pure  10.0 sec  160 km/h  270 km   
+2    Polestar                               2   4.7 sec  210 km/h  400 km   
+3         BMW                            iX3    6.8 sec  180 km/h  360 km   
+4       Honda                              e    9.5 sec  145 km/h  170 km   
+
+  Efficiency FastCharge              RapidCharge        PowerTrain  \
+0  161 Wh/km   940 km/h  Rapid charging possible   All Wheel Drive   
+1  167 Wh/km   250 km/h  Rapid charging possible  Rear Wheel Drive   
+2  181 Wh/km   620 km/h  Rapid charging possible   All Wheel Drive   
+3  206 Wh/km   560 km/h  Rapid charging possible  Rear Wheel Drive   
+4  168 Wh/km   190 km/h  Rapid charging possible  Rear Wheel Drive   
+
+     PlugType  BodyStyle Segment  Seats  PriceEuro  
+0  Type 2 CCS      Sedan       D      5      55480  
+1  Type 2 CCS  Hatchback       C      5      30000  
+2  Type 2 CCS   Liftback       D      5      56440  
+3  Type 2 CCS        SUV       D      5      68040  
+4  Type 2 CCS  Hatchback       B      4      32997  
+
+File 6:
+  Sl. No           State  \
+0      1  Andhra Pradesh   
+1      2           Assam   
+2      3           Bihar   
+3      4    Chhattisgarh   
+4      5           Delhi   
+
+   Two Wheelers (Category L1 & L2 as per Central Motor Vehicles Rules  \
+0                                              431.0                    
+1                                              463.0                    
+2                                              252.0                    
+3                                              613.0                    
+4                                             1395.0                    
+
+   Two Wheelers (Category L2 (CMVR))  \
+0                              692.0   
+1                              138.0   
+2                              430.0   
+3                              382.0   
+4                              251.0   
+
+   Two Wheelers (Max power not exceeding 250 Watts)  \
+0                                            4689.0   
+1                                            1006.0   
+2                                            2148.0   
+3                                            2078.0   
+4                                            5018.0   
+
+  Three Wheelers (Category L5 slow speed as per CMVR)  \
+0                                                  0    
+1                                                  0    
+2                                                  6    
+3                                                 58    
+4                                                  0    
+
+   Three Wheelers (Category L5 as per CMVR)  \
+0                                       0.0   
+1                                     117.0   
+2                                      64.0   
+3                                     106.0   
+4                                       1.0   
+
+   Passenger Cars (Category M1 as per CMVR)  Buses  Total in state  
+0                                    3680.0    0.0          9492.0  
+1                                     151.0    0.0          1875.0  
+2                                     271.0    0.0          3171.0  
+3                                     997.0    0.0          4234.0  
+4                                   12695.0   21.0         19381.0  
+
+
+
+
+
+##preprocessing
+
+import pandas as pd
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the datasets
+file_paths = [
+    './1vIFXRbNIxrRLdv-mwt_9yIsnx7YH-llq.csv',
+    './1QzeZz68MWU_sroD_Gn8W7Msaji8D769N.csv',
+    './1JT0L_qTP9WvHMu9ildgRFEpzmMPL-_xk.csv',
+    './1gvlTYkuB7luxyCWC7eLECHqE-ka_yvRm.csv',
+    './123XhO2XlIq2oVcTHXdHYcV8saehrb9_c.csv',
+    './1hECIBK8RLf6Pulx1dYK-omG1K3gQFDnV.csv'
+]
+
+dfs = []
+for file_path in file_paths:
+    df = pd.read_csv(file_path)
+    dfs.append(df)
+
+# Handling Missing Values
+for df in dfs:
+    df.fillna(0, inplace=True)  # Replace NaN with 0
+
+# Handling Categorical Variables
+for df in dfs:
+    df = pd.get_dummies(df, columns=['Fuel_Type ', 'seller_type ', 'transmission ', '  Owner '])
+
+# Feature Engineering
+for df in dfs:
+    df['Age'] = 2024 - df['Year']  # Create a new column 'Age' representing the age of the car
+
+# Standardization/Normalization
+scaler = StandardScaler()
+for df in dfs:
+    df[['Selling_Price', 'Present_Price', 'Kms_Driven']] = scaler.fit_transform(df[['Selling_Price', 'Present_Price', 'Kms_Driven']])
+
+# Data Integration
+merged_df = pd.concat(dfs, axis=0, ignore_index=True)
+
+# Data Cleaning
+cleaned_df = merged_df.drop_duplicates()
+
+# Data Transformation
+cleaned_df['Model_Year'] = cleaned_df['Model Year'].apply(lambda x: int(str(x)[:4]))
+
+# Splitting Data
+X = cleaned_df[['Selling_Price', 'Present_Price', 'Kms_Driven']]
+y = cleaned_df['Model_Year']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+# Data Visualization
+sns.pairplot(cleaned_df[['Selling_Price', 'Present_Price', 'Kms_Driven', 'Model_Year']])
+plt.show()
 
